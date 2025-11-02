@@ -41,19 +41,18 @@
       </a>
 
       <nav id="navmenu" class="navmenu">
-        <ul>
-          <li><a class="active" href="{% url 'index' %}">Home</a></li>
-          <li><a class="active" href="{% url 'about' %}">About</a></li>
-          <li><a href="destinations.html">Destinations</a></li>
-          <li><a href="tours.html">Tours</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-          </li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-      </nav>
+    <ul>
+        <li><a href="{% url 'index' %}" class="{% if request.resolver_match.url_name == 'index' %}active{% endif %}">Home</a></li>
+        <li><a href="{% url 'about' %}" class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">About</a></li>
+        <li><a href="{% url 'destinations' %}" class="{% if request.resolver_match.url_name == 'destinations' %}active{% endif %}">Destinations</a></li>
+        <li><a href="{% url 'tours' %}" class="{% if request.resolver_match.url_name == 'tours' %}active{% endif %}">Tours</a></li>
+        <li><a href="{% url 'gallery' %}" class="{% if request.resolver_match.url_name == 'gallery' %}active{% endif %}">Gallery</a></li>
+        <li><a href="{% url 'contact' %}" class="{% if request.resolver_match.url_name == 'contact' %}active{% endif %}">Contact</a></li>
+    </ul>
+    <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+</nav>
 
-      <a class="btn-getstarted" href="destiantios.html">Get Started</a>
+      <a class="btn-getstarted" href="{% url 'destinations' %}">Get Started</a>
 
     </div>
   </header>

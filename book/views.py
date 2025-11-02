@@ -7,3 +7,15 @@ def index(request):
 
 def about(request):
     return render(request, 'book/about.html')
+
+def destinations(request):
+    return render(request, 'book/destinations.html')
+
+def tours(request):
+    return render(request, 'book/tours.html')
+
+def gallery(request):
+    return render(request, 'book/gallery.html')
+
+def contact(request):
+    return render(request, 'book/contact.html')
