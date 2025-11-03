@@ -327,49 +327,55 @@
         <h2>Featured Tours</h2>
         <div><span>Check Our</span> <span class="description-title">Featured Tours</span></div>
       </div><!-- End Section Title -->
+<div class="container" data-aos="fade-up" data-aos-delay="100">
+  <div class="row gy-4">
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
+    {% for featured_tour in featured_tours %}
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="tour-card">
+          <div class="tour-image">
+            <img src="{{ featured_tour.image.url }}" alt="{{ featured_tour.name }}" class="img-fluid" loading="lazy">
+            <div class="tour-badge">{{ featured_tour.tag }}</div>
+            <div class="tour-price">${{ featured_tour.price }}</div>
+          </div>
 
-{% for featured_tour in featured_tours %}
-        <div class="row gy-4">
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="tour-card">
-              <div class="tour-image">
-                <img src="{{ featured_tour.image.url }}" alt="{{ featured_tour.name }}" class="img-fluid" loading="lazy">
-                <div class="tour-badge">{{ featured_tour.tag }}</div>
-                <div class="tour-price">${{ featured_tour.price }}</div>
-              </div>
-              <div class="tour-content">
-                <h4>{{ featured_tour.name }}</h4>
-                <div class="tour-meta">
-                  <span class="duration"><i class="bi bi-clock"></i> {{ featured_tour.duration }} Days</span>
-                  <span class="group-size"><i class="bi bi-people"></i> Max {{ featured_tour.group_size }}</span>
-                </div>
-                <p>{{ featured_tour.description }}</p>
-                  <div class="tour-highlights">
-                {% for place in featured_tour.destinations|split:"," %}
-                  {% with place|trim as dest %}
-                    {% if dest %}
-                      <span class="dest-pill">{{ dest }}</span>
-                    {% endif %}
-                  {% endwith %}
-                {% endfor %}
-                </div>
-                <div class="tour-action">
-                  <a href="booking.html" class="btn-book">Book Now</a>
-                  <div class="tour-rating">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-half"></i>
-                    <span>{{ featured_tour.ratings }}</span>
-                  </div>
-                </div>
+          <div class="tour-content">
+            <h4>{{ featured_tour.name }}</h4>
+            <div class="tour-meta">
+              <span class="duration"><i class="bi bi-clock"></i> {{ featured_tour.duration }} Days</span>
+              <span class="group-size"><i class="bi bi-people"></i> Max {{ featured_tour.group_size }}</span>
+            </div>
+            <p>{{ featured_tour.description }}</p>
+
+            <div class="tour-highlights">
+              {% for place in featured_tour.destinations|split:"," %}
+                {% with place|trim as dest %}
+                  {% if dest %}
+                    <span class="dest-pill">{{ dest }}</span>
+                  {% endif %}
+                {% endwith %}
+              {% endfor %}
+            </div>
+
+            <div class="tour-action">
+              <a href="booking.html" class="btn-book">Book Now</a>
+              <div class="tour-rating">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-half"></i>
+                <span>{{ featured_tour.ratings }}</span>
               </div>
             </div>
-          </div><!-- End Tour Item -->
-{% endfor %}
+          </div>
+        </div>
+      </div><!-- End Tour Item -->
+    {% endfor %}
+
+  </div><!-- End Row -->
+</div><!-- End Container -->
+
           
 
         </div>
