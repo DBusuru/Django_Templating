@@ -1,13 +1,16 @@
 from django.shortcuts import render
 
 # Create your views here.
-from .models import Destination, Featured_Destinations
+from .models import Destination, Featured_Destinations, Featured_Tours
 
 
 def index(request):
     featured_destinations = Featured_Destinations.objects.all()
-
-    return render(request, 'book/index.html', {'featured_destinations': featured_destinations})
+    context = {
+        'featured_destinations': featured_destinations,
+        'featured_tours': Featured_Tours.objects.all(),
+    }
+    return render(request, 'book/index.html', context)
 
 
 def about(request):
