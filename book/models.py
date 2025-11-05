@@ -55,3 +55,11 @@ class Featured_Tours(models.Model):
     def __str__(self):
         return self.name
 
+class Testimonial(models.Model):
+    name = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='testimonials/', blank=False, null=True)
+    title = models.CharField(max_length=100, blank=False, null=True)  # Optional title for the testimonial
+    content = models.TextField()
+   
+    def __str__(self):
+        return self.name

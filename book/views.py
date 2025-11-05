@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-from .models import Destination, Featured_Destinations, Featured_Tours
+from .models import Destination, Featured_Destinations, Featured_Tours, Testimonial
 
 
 def index(request):
@@ -9,6 +9,7 @@ def index(request):
     context = {
         'featured_destinations': featured_destinations,
         'featured_tours': Featured_Tours.objects.all(),
+        'testimonials': Testimonial.objects.all(),  # Placeholder for testimonials if needed
     }
     return render(request, 'book/index.html', context)
 
