@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-from .models import Destination, Featured_Destinations, Featured_Tours, Testimonial
+from .models import Destination, Featured_Destinations, Featured_Tours, Testimonial, Tour
 
 
 def index(request):
@@ -32,7 +32,14 @@ def destinations(request):
 
 
 def tours(request):
-    return render(request, 'book/tours.html')
+    # Query the structured Tour model. Featured tours are flagged with `featured=True`.
+    featured_qs = Tour.objects.filter(featured=True).order_by('name')
+    tours_qs = Tour.objects.all().order_by('name')
+    context = {
+        'featured_tours': featured_qs,
+        'tours': tours_qs,
+    }
+    return render(request, 'book/tours.html', context)
 
 
 def gallery(request):

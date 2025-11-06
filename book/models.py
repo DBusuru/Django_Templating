@@ -55,6 +55,31 @@ class Featured_Tours(models.Model):
     def __str__(self):
         return self.name
 
+
+class Tour(models.Model):
+    """A more structured Tour model used for featured and regular tours.
+
+    Fields match the data used in templates (image, name, description, duration, price, tag).
+    Destinations are modeled as a ManyToMany to `Destination` for better relationships.
+    """
+    name = models.CharField(max_length=150)
+    description = models.TextField(blank=True)
+    image = models.ImageField(upload_to='tours/', blank=True, null=True)
+    duration = models.PositiveIntegerField(default=0, help_text="Duration in days")
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    tag = models.CharField(max_length=50, blank=True, null=True)
+    destinations = models.ManyToManyField(Destination, blank=True, related_name='tours')
+    featured = models.BooleanField(default=False)
+    ratings = models.DecimalField(max_digits=3, decimal_places=2, default=0.0)
+    group_size = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        verbose_name = 'Tour'
+        verbose_name_plural = 'Tours'
+
+    def __str__(self):
+        return self.name
+
 class Testimonial(models.Model):
     name = models.CharField(max_length=100)
     image = models.ImageField(upload_to='testimonials/', blank=False, null=True)
@@ -63,3 +88,4 @@ class Testimonial(models.Model):
    
     def __str__(self):
         return self.name
+    
